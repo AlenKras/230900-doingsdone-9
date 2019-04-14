@@ -3,12 +3,42 @@
 $show_complete_tasks = rand(0, 1);
 $projects = ["Входящие","Учеба","Работа","Домашние дела","Авто"];
 $task = [
-["title" => "Собеседование в IT компании","date" => "01.12.2018","project" => "Работа","status" => "Нет"],
-["title" => "Выполнить тестовое задание","date" => "25.12.2018","project" => "Работа","status" => "Нет"],
-["title" => "Сделать задание первого раздела","date" => "21.12.2018","project" => "Учеба","status" => "Да"],
-["title" => "Встреча с другом","date" => "22.12.2018","project" => "Входящие","status" => "Нет"],
-["title" => "Купить корм для кота","date" => "Нет","project" => "Домашние дела","status" => "Нет"],
-["title" => "Заказать пиццу","date" => "Нет","project" => "Домашние дела","status" => "Нет"]
+[
+	"title" => "Собеседование в IT компании",
+	"date" => "01.12.2018",
+	"project" => "Работа",
+	"status" => false
+],
+[
+	"title" => "Выполнить тестовое задание",
+	"date" => "25.12.2018",
+	"project" => "Работа",
+	"status" => false
+],
+[
+	"title" => "Сделать задание первого раздела",
+	"date" => "21.12.2018",
+	"project" => "Учеба",
+	"status" => true
+],
+[
+	"title" => "Встреча с другом",
+	"date" => "22.12.2018",
+	"project" => "Входящие",
+	"status" => false
+],
+[
+	"title" => "Купить корм для кота",
+	"date" => "Нет",
+	"project" => "Домашние дела",
+	"status" => false
+],
+[
+	"title" => "Заказать пиццу",
+	"date" => "Нет",
+	"project" => "Домашние дела",
+	"status" => false
+]
 ];
 ?>
 <!DOCTYPE html>
@@ -83,17 +113,17 @@ $task = [
 
                     <label class="checkbox">
                         <!--добавить сюда аттрибут "checked", если переменная $show_complete_tasks равна единице-->
-                        <input class="checkbox__input visually-hidden show_completed" type="checkbox" <?php if($show_complete_tasks): ?> checked <?php endif ?>>
+                        <input class="checkbox__input visually-hidden show_completed" type="checkbox" <?php if($show_complete_tasks): ?>checked<?php endif ?>>
                         <span class="checkbox__text">Показывать выполненные</span>
                     </label>
                 </div>
 				<?php foreach ($task as $key => $value):?>
                 <table class="tasks">
-				 <?php if(($value["status"]!=="Да")|($show_complete_tasks)):?>
-                    <tr class="tasks__item task<?php if($value["status"]=="Да"):?> task--completed<?php endif ?>">
+				 <?php if((!$value["status"])||($show_complete_tasks)):?>
+                    <tr class="tasks__item task <?php if($value["status"]):?>task--completed<?php endif ?>">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
-                                <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1"<?php if($value["status"]=="Да"):?> checked<?php endif ?>>
+                                <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1" <?php if($value["status"]):?>checked<?php endif ?>>
                                 <span class="checkbox__text"><?=$value["title"]?></span>
                             </label>
                         </td>
