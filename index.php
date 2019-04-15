@@ -40,6 +40,15 @@ $task = [
 	"status" => false
 ]
 ];
+function count_task($list_task, $name) {
+    $c_task = 0;
+	foreach ($list_task as $list) {
+		if ($list["project"]===$name) {
+			$c_task++;
+		}
+	}
+    return $c_task;
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -84,7 +93,7 @@ $task = [
 						<?php foreach ($projects as $value):?>
                         <li class="main-navigation__list-item">
                             <a class="main-navigation__list-item-link" href="#"><?=$value?></a>
-                            <span class="main-navigation__list-item-count">0</span>
+                            <span class="main-navigation__list-item-count"><?=count_task($task,$value)?></span>
                         </li>
 						<?php endforeach ?>
                     </ul>
