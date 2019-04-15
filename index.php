@@ -40,6 +40,14 @@ $task = [
 	"status" => false
 ]
 ];
+function counttask($spisok,$name)
+{
+    $ctask = 0;
+	foreach ($spisok as $key => $value) {
+		if ($value["project"]===$name) {$ctask++;}
+	}
+    return $ctask;
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -84,7 +92,7 @@ $task = [
 						<?php foreach ($projects as $value):?>
                         <li class="main-navigation__list-item">
                             <a class="main-navigation__list-item-link" href="#"><?=$value?></a>
-                            <span class="main-navigation__list-item-count">0</span>
+                            <span class="main-navigation__list-item-count"><?=counttask($task,$value)?></span>
                         </li>
 						<?php endforeach ?>
                     </ul>
