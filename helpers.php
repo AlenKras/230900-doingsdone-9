@@ -142,3 +142,15 @@ function include_template($name, array $data = []) {
 
     return $result;
 }
+/**
+ * Считает количество задач в проекте
+ */
+function count_tasks($list_tasks, $name) {
+    $c_tasks = 0;
+	foreach ($list_tasks as $list) {
+		if ($list["project"]===$name) {
+			$c_tasks++;
+		}
+	}
+    return $c_tasks;
+}
