@@ -154,3 +154,8 @@ function count_tasks($list_tasks, $name) {
 	}
     return $c_tasks;
 }
+function get_deadline($date) {
+	$dl_task = false;
+	if (floor((strtotime($date)- time()) / 3600<= 24)) {$dl_task = true;}
+    return $dl_task;
+}
