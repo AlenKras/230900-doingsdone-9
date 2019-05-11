@@ -23,14 +23,14 @@
 				<?php foreach ($tasks as $key => $task):?>
                 <table class="tasks">
 				 <?php if((!$task["status"])||($show_complete_tasks)):?>
-                    <tr class="tasks__item task <?php if($task["status"]):?>task--completed<?php endif ?> <?php if(get_deadline($task["date"])&&!$task["status"]):?>task--important<?php endif ?>">
+                    <tr class="tasks__item task <?php if($task["status"]):?>task--completed<?php endif ?> <?php if(get_deadline($task["dt_ex"])&&!$task["status"]):?>task--important<?php endif ?>">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1" <?php if($task["status"]):?>checked<?php endif ?>>
-                                <span class="checkbox__text"><?=htmlspecialchars($task["title"])?></span>
+                                <span class="checkbox__text"><?=htmlspecialchars($task["name"])?></span>
                             </label>
                         </td>
-                        <td class="task__date"><?=$task["date"]?></td>
+                        <td class="task__date"><?=date("d.m.Y",strtotime($task["dt_ex"]))?></td>
                     </tr>
 				 <?php endif ?>
                 </table>

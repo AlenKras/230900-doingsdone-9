@@ -21,13 +21,13 @@ INSERT INTO `tasks` (`status`,`name`,`dt_ex`,`user_id`,`project_id`) VALUES
 (0,'Заказать пиццу',NULL,1,4);
 
 -- Получение количества задач для списка проектов одного пользователя (по ID пользователя)
-SELECT c_t.* FROM users u
+SELECT c_t.id, c_t.name, c_t.c_tasks FROM users u
 JOIN (
-SELECT p.user_id, p.name, COUNT(t.id) as c_tasks FROM projects p
+SELECT p.id, p.user_id, p.name, COUNT(t.id) as c_tasks FROM projects p
 LEFT JOIN tasks t ON p.id = t.project_id
-GROUP BY p.id ORDER BY p.id ASC
+GROUP BY p.id 
 ) c_t ON u.id = c_t.user_id
-WHERE u.id=1
+WHERE u.id=1 ORDER BY c_t.id ASC
 
 -- Получение списка из всех задач для одного проекта (по ID проекта)
 SELECT t.name FROM projects p
