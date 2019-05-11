@@ -4,22 +4,25 @@ CREATE DATABASE `230900-doingsdone-9`
 USE `230900-doingsdone-9`;
 CREATE TABLE `projects` (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	name CHAR(128)
+	name VARCHAR(128),
+	user_id INT
 );
 CREATE TABLE `tasks` (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	dt_add TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	status INT DEFAULT 0,
-	name CHAR(128),
-	file_link CHAR(128),
-	dt_ex TIMESTAMP
+	status TINYINT DEFAULT 0,
+	name VARCHAR(128),
+	file_link VARCHAR(128),
+	dt_ex TIMESTAMP,
+	user_id INT,
+	project_id INT
 );
 CREATE TABLE `users` (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	dt_add TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	email CHAR(128) NOT NULL UNIQUE,
-	name CHAR(128),
-	password CHAR(64)
+	email VARCHAR(128) NOT NULL UNIQUE,
+	name VARCHAR(128),
+	password VARCHAR(64)
 );
 CREATE INDEX `p_name` ON `projects`(`name`);
 CREATE INDEX `t_dt_add` ON `tasks`(`dt_add`);
