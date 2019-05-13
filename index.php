@@ -1,6 +1,11 @@
 ﻿<?php
+// показывать или нет выполненные задачи
+$show_complete_tasks = rand(0, 1);
+$user_id = 1;
 require_once('helpers.php');
-require_once('data.php');
+require_once ('config/db.php');
+require_once ('init.php');
+
 
 $content_page = include_template('index.php',[
 	'show_complete_tasks' => $show_complete_tasks,

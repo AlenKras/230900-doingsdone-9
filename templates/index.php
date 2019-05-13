@@ -1,5 +1,5 @@
                 <h2 class="content__main-heading">Список задач</h2>
-
+				<?php $tasks = get_tasks($link,$user_id); ?>
                 <form class="search-form" action="index.php" method="post" autocomplete="off">
                     <input class="search-form__input" type="text" name="" value="" placeholder="Поиск по задачам">
 
