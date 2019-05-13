@@ -164,3 +164,33 @@ function get_deadline($date) {
 	}
     return $dl_task;
 }
+function get_projects($link,$user_id) {
+    $sql = 'SELECT c_t.id, c_t.name, c_t.c_tasks FROM users u
+			JOIN (
+			SELECT p.id, p.user_id, p.name, COUNT(t.id) as c_tasks FROM projects p
+			LEFT JOIN tasks t ON p.id = t.project_id
+			GROUP BY p.id 
+			) c_t ON u.id = c_t.user_id
+			WHERE u.id='.$user_id.' ORDER BY c_t.id ASC';
+    $result = mysqli_query($link, $sql);
+    if (!$result) {
+        $error = mysqli_error($link);
+        $content = include_template('error.php', ['error' => $error]);
+		exit();        
+    }
+	$projects = mysqli_fetch_all($result, MYSQLI_ASSOC);
+	return $projects;
+}
+function get_tasks($link,$user_id) {
+	$sql = 'SELECT t.* FROM users u
+			JOIN tasks t ON u.id = t.user_id
+			WHERE u.id='.$user_id;
+    $result = mysqli_query($link, $sql);
+    if (!$result) {
+        $error = mysqli_error($link);
+        $content = include_template('error.php', ['error' => $error]);
+		exit();        
+    }
+	$tasks = mysqli_fetch_all($result, MYSQLI_ASSOC);
+	return $tasks;
+}
